@@ -1,0 +1,16 @@
+
+<h1>Lista de posts</h1>
+
+<ul>
+	{{#each model as |post|}}
+	<li>
+		{{#link-to 'post' post}}
+
+		{{post.title}}
+
+		{{/link-to}}
+	</li>
+	{{/each}}
+</ul>
+
+{{outlet}}
