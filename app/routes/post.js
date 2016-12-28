@@ -14,6 +14,8 @@ export default Ember.Route.extend({
 			const commentobj = this.store.createRecord('comment',{text: comment,postId:postid,post: postid});
 			commentobj.save().then(function(commentresponse){
 				post.get('comments').pushObject(commentresponse);
+			},function(){				
+				alert('error');
 			});
 		}
 	}
