@@ -20,12 +20,24 @@ export default Ember.Route.extend({
 		},
 		deleteComment(comment){
 			
+			comment.destroyRecord();
 			console.log(comment.id);
-			this.get('store').find('comment', comment.id).then(function (comentario) {
+		/*	this.get('store').find('comment', comment.id).then(function (comentario) {
 				comentario.deleteRecord();
 				comentario.get('isDeleted'); // => true
 				comentario.save(); // => DELETE to /posts/1
-			});
+			});*/
+			
+/*		this.get('store').find('comment', comment.id).then((comm) => {
+            comm.destroyRecord().then(() => {
+            //   this.transitionTo('pencils');
+            console.log('++++  eliminado');
+           });
+        });*/
+			
+			
+			
+			
 		
 		}
 	}
