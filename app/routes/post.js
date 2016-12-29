@@ -17,6 +17,16 @@ export default Ember.Route.extend({
 			},function(){				
 				alert('error');
 			});
+		},
+		deleteComment(comment){
+			
+			console.log(comment.id);
+			this.get('store').find('comment', comment.id).then(function (comentario) {
+				comentario.deleteRecord();
+				comentario.get('isDeleted'); // => true
+				comentario.save(); // => DELETE to /posts/1
+			});
+		
 		}
 	}
 
