@@ -1,16 +1,16 @@
 
 <h1>Lista de posts</h1>
-
-<ul>
-	{{#each model as |post|}}
-	<li>
-		{{#link-to 'post' post}}
-
-		{{post.title}}
-
-		{{/link-to}}
-	</li>
-	{{/each}}
-</ul>
-
+<div class="col-sm-6">
+	<ul class="list-group">
+		{{#each model as |post|}}
+		
+			{{#link-to 'post' post class="list-group-item"}}
+	
+			{{post.title}}
+	
+			{{/link-to}}
+		
+		{{/each}}
+	</ul>
+</div>
 {{outlet}}
