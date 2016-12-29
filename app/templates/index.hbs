@@ -1,5 +1,6 @@
 
 <h1>Lista de posts</h1>
+<button class="btn btn-defaul" {{action 'viewForm'}}> New Post</button>
 <div class="col-sm-6">
 	<ul class="list-group">
 		{{#each model as |post|}}
@@ -13,4 +14,19 @@
 		{{/each}}
 	</ul>
 </div>
+{{#if formIsVisible}}
+<div class="col-sm-6">
+	<form {{action 'savePost' on="submit"}}>
+		  <div class="form-group">
+		    <label for="exampleInputTitle">Title</label>
+		   	{{input value=title  id="exampleInputTitle" class="form-control"}}
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputBody">Description</label>
+		   	{{textarea value=body  id="exampleInputBody" cols="60" rows="4"  class="form-control"}}
+		  </div>
+		  <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+</div>
+{{/if}}
 {{outlet}}

@@ -1,7 +1,7 @@
 
 <h1>{{model.title}}</h1>
 <p>{{model.description}}</p>
-<div class="row">
+<div class="row well">
 	
 	{{#each model.comments as |comment|}}
 
@@ -11,7 +11,7 @@
 	
 </div>
 <div class="row">
-	<div class="col-xs-12 col-md-6">
+	<div class="col-xs-12 col-md-6 ">
 		{{add-comment action='saveComment' postid=model.id}}
 	</div>
 </div>
