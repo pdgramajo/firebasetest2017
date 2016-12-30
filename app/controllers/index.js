@@ -5,10 +5,14 @@ export default Ember.Controller.extend({
     formIsVisible:false,
     dataSelected: function () {
         var filter = this.get('filter');
+        if(filter){
         return this.get('model').filter(function (item, index, enumerable) {
             var regexp = new RegExp(filter, 'gi');
             return item.data.title.toLowerCase().match(regexp);           
         });
+        }else{
+             return this.get('model');
+        }
     }.property('filter'),
     
     actions:{
@@ -23,20 +27,20 @@ export default Ember.Controller.extend({
 		    const title = this.get('title');
 		    const body = this.get('body');
 		    
-		 var newpost =   this.get('store').createRecord('post', {
-              title: title,
-              description:body
-            });
-		    newpost.save();
+		     var newpost =   this.get('store').createRecord('post', {
+                  title: title,
+                  description:body
+                });
+                var self = this;
+                newpost.save().then(function(post){
+                    self.transitionToRoute('post', post);
+                }).catch(function(e){
+                    console.log('error: ',e);
+                });
+            
 			this.set('formIsVisible',false);
-		/*	this.setProperties({
-                      title: '',
-                      body: ''
-                    })*/
-                    
-                 this.set('title','');
-                 this.set('body','');
-                    
+			this.set('title','');
+			this.set('body','');
 		},
 		updatePost(){
 		    
