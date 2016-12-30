@@ -1,11 +1,24 @@
 
 <h1>Lista de posts</h1>
-<button class="btn btn-defaul" {{action 'viewForm'}}> New Post</button>
+
+{{#if formIsVisible}}
+	<button class="btn btn-default" {{action 'hideForm'}}> Cancel</button>
+  {{else}}
+	<button class="btn btn-primary" {{action 'viewForm'}}> New Post</button>	
+{{/if}}
 <div class="col-sm-6">
+	
+	<div class="input-group">
+      {{input value=filter class="form-control"  placeholder="Search for..."}}
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" >Search</button>
+      </span>
+    </div><!-- /input-group -->
+    <br>
 	<ul class="list-group">
-		{{#each model as |post|}}
+		{{#each dataSelected as |post|}}
 		
-			{{#link-to 'post' post class="list-group-item"}}
+			{{#link-to 'post' post class="list-group-item margin-bottom-5"}}
 	
 			{{post.title}}
 	
@@ -15,15 +28,17 @@
 	</ul>
 </div>
 {{#if formIsVisible}}
+
 <div class="col-sm-6">
-	<form {{action 'savePost' on="submit"}}>
+<br>
+	<form {{action 'savePost' on="submit"}} class='margin-left-15'>
 		  <div class="form-group">
 		    <label for="exampleInputTitle">Title</label>
 		   	{{input value=title  id="exampleInputTitle" class="form-control"}}
 		  </div>
 		  <div class="form-group">
 		    <label for="exampleInputBody">Description</label>
-		   	{{textarea value=body  id="exampleInputBody" cols="60" rows="4"  class="form-control"}}
+		   	{{textarea value=body  id="exampleInputBody" cols="60" rows="10"  class="form-control"}}
 		  </div>
 		  <button type="submit" class="btn btn-default">Submit</button>
 	</form>

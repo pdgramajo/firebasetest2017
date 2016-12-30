@@ -3,10 +3,20 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
     formIsVisible:false,
-    	
+    dataSelected: function () {
+        var filter = this.get('filter');
+        return this.get('model').filter(function (item, index, enumerable) {
+            var regexp = new RegExp(filter, 'gi');
+            return item.data.title.toLowerCase().match(regexp);           
+        });
+    }.property('filter'),
+    
     actions:{
 		viewForm(){
 			this.set('formIsVisible',true);
+		},
+		hideForm(){
+		    this.set('formIsVisible',false);
 		},
 		savePost(){
 		    
@@ -19,10 +29,14 @@ export default Ember.Controller.extend({
             });
 		    newpost.save();
 			this.set('formIsVisible',false);
-			this.setProperties({
+		/*	this.setProperties({
                       title: '',
                       body: ''
-                    })
+                    })*/
+                    
+                 this.set('title','');
+                 this.set('body','');
+                    
 		},
 		updatePost(){
 		    
