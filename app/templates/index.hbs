@@ -1,5 +1,5 @@
 
-<h1>Lista de posts</h1>
+<h1>Lista de posts </h1>
 
 {{#if formIsVisible}}
 	<button class="btn btn-default" {{action 'hideForm'}}> Cancel</button>
@@ -17,13 +17,14 @@
     <br>
 	<ul class="list-group">
 		{{#each dataSelected as |post|}}
-		
-			{{#link-to 'post' post class="list-group-item margin-bottom-5"}}
-	
+		<li  class="list-group-item margin-bottom-5">
+			{{#link-to 'post' post}}
 			{{post.title}}
-	
 			{{/link-to}}
-		
+		  <button type="button" class="close  pull-right btn  btn-xs"  {{action 'deletePost' post}}> 
+ 			 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+		  </button>
+		</li>
 		{{/each}}
 	</ul>
 </div>

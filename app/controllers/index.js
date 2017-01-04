@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
     dataSelected: function () {
         var filter = this.get('filter');
         if(filter){
-        return this.get('model').filter(function (item, index, enumerable) {
+        return this.get('model').filter(function (item) {
             var regexp = new RegExp(filter, 'gi');
             return item.data.title.toLowerCase().match(regexp);           
         });
@@ -51,6 +51,15 @@ export default Ember.Controller.extend({
         //    
         //      post.save(); // => PUT to '/posts/1'
         //    });
+		},
+		deletePost(post){
+		 let post1 = this.store.peekRecord('post', post.id);
+            post1.get('comments').then((comments) => {
+                comments.forEach(function(comment) {
+                       comment.destroyRecord();
+                    });
+            });
+		 post.destroyRecord();
 		}
 		
 	}
