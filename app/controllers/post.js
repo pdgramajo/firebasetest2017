@@ -19,12 +19,14 @@ export default Ember.Controller.extend({
 			
 			this.set('showmodal',true);
 		},
-		submit(){
-		    this.set('showmodal',false);
-		},
 		close12(){
 			this.set('showmodal',false);
 			console.log('-------------- entro al cancel');
-		}
+		},
+		submit(post){
+		  		  post.save().then(()=>{
+		  		  	 this.set('showmodal',false);
+		  		  }); // => PUT to '/posts/1'
+		},
 	}
 });

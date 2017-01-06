@@ -1,8 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-
+    needs:['application'],
     formIsVisible:false,
+    application_var: Ember.computed.alias("controllers.application"),
     dataSelected: function () {
         var filter = this.get('filter');
         if(filter){
@@ -53,13 +54,20 @@ export default Ember.Controller.extend({
         //    });
 		},
 		deletePost(post){
-		 let post1 = this.store.peekRecord('post', post.id);
+		/* let post1 = this.store.peekRecord('post', post.id);
             post1.get('comments').then((comments) => {
                 comments.forEach(function(comment) {
                        comment.destroyRecord();
                     });
-            });
-		 post.destroyRecord();
+            });*/
+            
+		 post.destroyRecord().then(()=>{
+		    // let x = this.get('store').findAll('comment');
+		  //   this.get('comment').set()
+		     let mo  = this.get('comment');
+		     console.log('application: ',mo);
+		     
+		 });
 		}
 		
 	}
