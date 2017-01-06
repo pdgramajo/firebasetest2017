@@ -3,6 +3,9 @@
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
+##DEMO
+DEMO: http://ember-blog-example-pdgramajo.c9users.io:8080/
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
