@@ -43,16 +43,6 @@ export default Ember.Controller.extend({
 			this.set('title','');
 			this.set('body','');
 		},
-		updatePost(){
-		    
-		//    store.findRecord('post', 1).then(function(post) {
-        //      post.get('title'); // => "Rails is Omakase"
-        //    
-        //      post.set('title', 'A new post');
-        //    
-        //      post.save(); // => PUT to '/posts/1'
-        //    });
-		},
 		deletePost(post){
 		/* let post1 = this.store.peekRecord('post', post.id);
             post1.get('comments').then((comments) => {
@@ -61,13 +51,7 @@ export default Ember.Controller.extend({
                     });
             });*/
             
-		 post.destroyRecord().then(()=>{
-		    // let x = this.get('store').findAll('comment');
-		  //   this.get('comment').set()
-		     let mo  = this.get('comment');
-		     console.log('application: ',mo);
-		     
-		 });
+		 post.destroyRecord();
 		}
 		
 	}

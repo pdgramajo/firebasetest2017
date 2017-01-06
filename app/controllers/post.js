@@ -6,10 +6,10 @@ export default Ember.Controller.extend({
 		saveComment(comment,postid){
 			const  post = this.get('store').peekRecord('post', postid);
 			const commentobj = this.store.createRecord('comment',{text: comment,postId:postid,post: postid});
-			commentobj.save().then(function(commentresponse){
+			commentobj.save().then((commentresponse)=>{
 				post.get('comments').pushObject(commentresponse);
-			},function(){				
-				alert('error');
+			},(error)=>{				
+				alert('error',error);
 			});
 		},
 		deleteComment(comment){
@@ -21,7 +21,6 @@ export default Ember.Controller.extend({
 		},
 		close12(){
 			this.set('showmodal',false);
-			console.log('-------------- entro al cancel');
 		},
 		submit(post){
 		  		  post.save().then(()=>{
