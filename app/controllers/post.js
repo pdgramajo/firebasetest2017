@@ -4,6 +4,7 @@ export default Ember.Controller.extend({
     showmodal:false,
     	actions:{
 		saveComment(comment,postid){
+			
 			const  post = this.get('store').peekRecord('post', postid);
 			const commentobj = this.store.createRecord('comment',{text: comment,postId:postid,post: postid});
 			commentobj.save().then((commentresponse)=>{
