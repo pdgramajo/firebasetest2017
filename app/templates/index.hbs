@@ -41,6 +41,10 @@
 		    <label for="exampleInputBody">Description</label>
 		   	{{textarea value=body  id="exampleInputBody" cols="60" rows="10"  class="form-control"}}
 		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputImage">Image</label>
+		   {{img-upload name="files" multiple=true action=(action "didSelectFiles") alt="Choose a File"}}
+		  </div>
 		  <button type="submit" class="btn btn-default">Submit</button>
 	</form>
 </div>
